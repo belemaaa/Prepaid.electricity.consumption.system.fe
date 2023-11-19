@@ -1,82 +1,13 @@
-.ElectricityPlan{
-    width: auto;
-    height: auto;
-    padding-right: 8vw;
-    
-}
-
-.eleh1{
-    margin-left: 5vw;
-}
-
-.planInfo{
-    width: 35vw;
-    height: auto;
-    margin-left: 5vw;
-    float: left;
-    background-color: teal;
-    padding-bottom: 5vh;
-    padding-left: 3vw;
-    box-sizing: border-box;
-    color: white;
-}
-
-.planInfo label{
-    font-size: 5vh;
-    
-}
-
-.planInfo select{
-    width: 15vw;
-    height: 7vh;
+.paidplans{
     text-align: center;
-    border-radius: 1vw;
-}
-
-
-
-.paymentsystem{
-    width: 45vw;
+    font-size: 3vh;
     height: auto;
-    float: right;
-    /* background-color: #1db954; */
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
-    padding-left: 5vw;
     padding-bottom: 5vh;
-    box-sizing: border-box;
-    
 }
 
-
-
-.paymentform label{
-    font-size: solid 5vh;
-    font-weight: bold;
-    margin-right: 1vw;
-    margin-bottom: 2vh;
-}
-
-.paymentform input{
-    width: 14vw;
-    height: 5vh;
-    margin-right: 2vw;
-    border-radius: 0.5vw;
-    border: none;
-    outline: solid 1.5px;
-    /* box-shadow: 2px 2px 2px black; */
-    padding-left: 1vw;
-    box-sizing: border-box;
-    margin-top: 1vh;
-    margin-bottom: 2vh;
-}
-
-.paymentform button{
-    width: 18vh;
-    height: 6vh;
-    color: white;
-    font-size: 2.5vh;
-    border: none;
-    border-radius: 1.4vh;
+.historybar{
+    width: 40vw;
+    height: 80vh;
     background-color: teal;
+    margin: auto;
 }
-

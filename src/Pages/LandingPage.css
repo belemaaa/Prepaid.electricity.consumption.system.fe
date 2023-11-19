@@ -1,8 +1,8 @@
 body {
     width: 100%;
     height: auto;
-    background-color: #feefe5;
-    font-family: 'Poppins', sans-serif;
+    background-color: beige;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -31,13 +31,14 @@ body {
     height: auto;
     margin: auto;
     object-fit: fill;
-    background-image: url('../images/nobg.png');
+    background-image: url('../images/bg4.webp');
     background-repeat: no-repeat;
+    text-align: center;
 
 }
 
 .holster h1{
-    float: right;
+    /* float: right; */
     margin-right: 6vw;
     
 }

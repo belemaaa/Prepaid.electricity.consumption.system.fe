@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import './Payment.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 const Payment = () => {
@@ -23,6 +23,8 @@ const Payment = () => {
         });
     };
 
+    
+
     const validateForm = () => {
         let tempErrors = {};
         // Add your validation logic here
@@ -31,7 +33,7 @@ const Payment = () => {
         tempErrors.cardHolderName = values.cardHolderName ? "" : "This field is required.";
         tempErrors.expiryDate = values.expiryDate ? "" : "This field is required.";
         tempErrors.cvv = values.cvv ? "" : "Input the correct cvv"
-        tempErrors.paymentAmount = values.paymentAmount ? "" : "Enter a valid payment amount"
+        // tempErrors.paymentAmount = values.paymentAmount ? "" : "Enter a valid payment amount"
         // Repeat for other fields
         setErrors(tempErrors);
         return Object.values(tempErrors).every(x => x === "");
@@ -46,15 +48,18 @@ const Payment = () => {
 
     };
 
+    const location = useLocation();
+    const paymentPrice = location.state.price;
 
 
     return (
         <div className='paydiv'>
-        
+            <section className='paydivsec'>
             <form onSubmit={handleSubmit} className='payform'>
 
-                <h1>Input Payment Details</h1>
-
+                <h1>Payment Details</h1>
+                <label>Card Holder Name</label>
+                <br></br>
                 <input
                     type="text"
                     name="cardHolderName"
@@ -66,6 +71,10 @@ const Payment = () => {
                 <br></br>
                 {errors.cardHolderName && <div>{errors.cardHolderName}</div>}
                 <br></br>
+
+                <label>Card Number</label>
+                <br></br>
+
                 <input
                     type="number"
                     name="cardNumber"
@@ -74,6 +83,9 @@ const Payment = () => {
                     placeholder="eg: 1234 4567 7890 0123"
                 />
                 <br></br>{errors.cardNumber && <div>{errors.cardNumber}</div>}
+                <br></br>
+
+                <label>Expiry date</label>
                 <br></br>
                 <input
                     type="date"
@@ -85,6 +97,10 @@ const Payment = () => {
                 <br></br>
                 {errors.expiryDate && <div>{errors.expiryDate}</div>}
                 <br></br>
+
+                <label>CVV</label>
+                <br></br>
+
                 <input
                     type="number"
                     name="cvv"
@@ -95,11 +111,15 @@ const Payment = () => {
                 <br></br>
                 {errors.cvv && <div>{errors.cvv}</div>}
                 <br></br>
+
+                <label>Payment Amount</label>
+                <br></br>
                 <input
                     type="text"
                     name="paymentAmount"
-                    value={values.paymentAmount}
-                    onChange={handleChange}
+                    value={paymentPrice}
+                    readOnly
+                    // onChange={handleChange}
                     placeholder="Payment Amount"
                 />
                 <br></br>
@@ -107,7 +127,7 @@ const Payment = () => {
                 <br></br>
                 <button type="submit">Pay</button>
             </form>
-
+            </section>
         </div>
 
     )

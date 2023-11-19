@@ -7,6 +7,7 @@ import Pin from './Pages/Pin';
 import Login from './Pages/Login';
 import Create from './Pages/Create';
 import Payment from './components/Payment';
+import Admin from './Pages/Admin';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
      <Route path='Header' element={<Header />}> </Route>
 
+      <Route path='/admin' element={<Admin />}></Route>
 
       <Route path='/Login' element={<Login />}></Route>
 

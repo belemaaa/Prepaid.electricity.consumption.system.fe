@@ -1,17 +1,17 @@
 .headerLinks{
-    width: 40vw;
+    /* justify-content: space-between; */
     height: 8vh;
-    text-align: center;
-    margin: auto;
+    text-align: right;
     text-decoration: none;
     color: black;
     /* background-color: white; */
-    font-size: 4vh;
+    font-size: 3vh;
     padding-top: 2vh;
     box-sizing: border-box;
     float: right;
-    margin-right: 4vw;
-    /* margin-bottom: 5vh; */
+    border-bottom: 1px solid;
+    width: 100%;
+    border-color: gainsboro;
 }
 
 .headerLinks ul{
@@ -20,13 +20,23 @@
     margin: auto;
     height: 5vh;
     width: 10vw;
+    
 }
 
 .headerLinks li{
     display: inline;
     text-decoration: none;
-    color: teal;
+    color: black;
     margin: 2vw;
     border-radius: 0.2vw;
-
+    /* border: 2px solid teal; */
+    border-radius: 20px;
+    padding: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    border-left: solid;
+}
+.headerLinks li:hover{
+    color: teal;
+    border-color: white solid;
 }

@@ -3,6 +3,16 @@
     height: auto;
 }
 
+.paydivsec{
+    width: 95vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    /* padding-bottom: 5vh; */
+}
+
 .payform{
     width: 40vw;
     height: auto;
@@ -23,7 +33,14 @@
     width: 15vw;
     height: 4vh;
     text-align: center;
+    border: none;
+    border-radius: 0.5vw;
     
+}
+
+.payform label{
+    color: teal;
+    font-weight: bold;
 }
 
 .payform button{
