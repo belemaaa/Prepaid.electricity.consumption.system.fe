@@ -7,7 +7,7 @@
     width: 30vw;
     height: auto;
     margin-top: 4vh;
-    background-color: white;
+    /* background-color: white; */
 
 }
 
@@ -21,7 +21,7 @@
     padding-bottom: 3vh;
     padding-top: 3vh;
     margin: auto;
-    background-color: white;
+    /* background-color: white; */
     /* box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; */
 }
 
@@ -54,10 +54,11 @@
 }
 
 .adminprint{
-    margin: auto;
+    /* margin: auto; */
+    margin-left: 45vw;
     width: 35vw;
     height: auto;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .sidebar2{

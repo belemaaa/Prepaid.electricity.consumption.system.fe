@@ -57,6 +57,7 @@ const Home = () => {
 
   const handleSelect = (price) => {
     setSelectedPrice(price)
+    gotoPayment()
   }
 
   return (

@@ -15,13 +15,14 @@
 
 .formm{
     margin: auto;
-    height: 50vh;
+    height: auto;
     width: 30vw;
     padding-top: 4vh;
     box-sizing: border-box;
     align-content: center;
     text-align: center;
     box-shadow: 1vh 2vh 3vh grey;
+    padding-bottom: 4vh;
 }
 .formm input{
     margin: auto;

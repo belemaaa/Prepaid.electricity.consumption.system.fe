@@ -23,10 +23,9 @@ const LandingPage = () => {
       </div>
 
       <div className='holster'>
-        <h1>Manage your electricity the smart way...</h1>
 
         <div className='moreInfo'>
-
+          <h1>Manage your electricity the smart way...</h1>
         </div>
 
         <div className='buttonHolder'>
@@ -37,7 +36,7 @@ const LandingPage = () => {
 
       </div>
 
-    
+
 
     </div>
   )
