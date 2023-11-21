@@ -3,12 +3,13 @@ import './Create.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Create = () => {
-  const [first_name, setFirst_name] = useState('')
+    const [first_name, setFirst_name] = useState('')
     const [last_name, setLast_name] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [phone_number, setPhone_number] = useState('')
     const [password, setPassword] = useState('')
+    const [error_message, setError_message] = useState('')
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -29,11 +30,12 @@ const Create = () => {
             password: password,
           })
         });
-        if (response.status === 200){
-          console.log('signup was successful')
-          navigate('/Login')
+        if (response.status === 201) {
+          console.log('Signup was successful');
+          navigate('/Login');
         }
       } catch(error){
+        setError_message('An error occurred. Please try again later.')
         console.error('Error received: ', error)
       }
     }
@@ -49,6 +51,7 @@ const Create = () => {
           <i class="fi fi-tr-circle-user"></i>
             <label className="formheader">  <h1>Create your account</h1> </label>
 
+            {error_message && <p style={{color: 'red'}}>{error_message}</p>}
             <label>First name </label>
             <br></br>
             <input placeholder='eg: John' type='text' value={first_name} onChange={(e) => setFirst_name(e.target.value)}>
