@@ -10,65 +10,55 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import LandingPage from './LandingPage'
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import { useLocation } from 'react-router-dom'
+import { getAccessToken } from './Cookie'
+import axios from 'axios'
 
 
-const Home = () => {
-
+const Home = ({access_token}) => {
   const location = useLocation();
   const value = location.state ? location.value.state : 110;
-  
-  const Options = [
-    { label: '14 DAYS validity plan',
-      description: 'This plan offers you a totsl of 14 units which would be for 28 days',
-      price: 100,
-      number_of_units: 14
-    },
-    { label: '1500 Credits for $150',
-    number_of_units: 14,
-     price: 150
-     },
-    { label: '2000 Credits for $200',
-    number_of_units: 14,
-     price: 200
-     },
-    { label: '2500 Credits for $250',
-    number_of_units: 14,
-     price: 250
-     },
-    { label: '3000 Credits for $300',
-    number_of_units: 14,
-     price: 300
-     },
-    { label: '4500 Credits for $450',
-    number_of_units: 14,  
-     price: 450
-     }
-  ]
-  
   let navigate = useNavigate();
   const gotoPayment = () => {
     let path = '/payment';
     navigate(path, {state:{price: selectedPrice}});
   }
-
   const [selectedPrice, setSelectedPrice] = useState(0)
   const handleSelect = (price) => {
     setSelectedPrice(price)
     gotoPayment()
   }
-
+  // fetch electricity_plan api
   const [plans, setPlans] = useState([])
-  const get_electricity_plans = async() => {
-    try{
-      // const headers={
-      //   'Authorization': `Bearer ${}`,
-      // }
-      // const response = await fetch('http://127.0.0.1:8000/api/electricity_plans/view')
-    } catch(error){
-
+  access_token = getAccessToken();
+  useEffect(() => {
+    const get_electricity_plans = async() => {
+      try{
+        
+        const headers={
+          'Authorization': `Bearer ${access_token}`,
+        }
+        const response = await axios.get('http://127.0.0.1:8000/api/electricity_plans/view')
+        setPlans(response.data.reverse())
+      } catch(error){
+          console.error('Error fetching plans: ', error)
+      }
     }
-  }
-
+  }, [])
+  // fetch profile api
+  const [profile, setProfile] = useState([])
+  useEffect(() => {
+    const get_profile = async() => {
+      try{
+        const headers={
+          'Authorization': `Bearer ${access_token}`,
+        }
+        const response = await axios.get('http://127.0.0.1:8000/api/profile/')
+        setProfile(response.data)
+      } catch(error){
+        console.error('Error fetching profile data: ', error)
+      }
+    }
+  })
   return (
 
     <div className='UserPage'>
@@ -78,9 +68,11 @@ const Home = () => {
         <h2>DASHBOARD</h2>
         <div className='sidebar'>
           <h1></h1>
-          <p>Grace Itamunoala</p>
-          <p>jeff@gmail.com</p>
-          <p>09122344545</p>
+          <p>{profile.first_name}</p>
+          <p>{profile.last_name}</p>
+          <p>@{profile.username}</p>
+          <p>{profile.email}</p>
+          <p>{profile.phone_number}</p>
         </div>
 
         <div className='flexContainer'>
@@ -88,18 +80,18 @@ const Home = () => {
           <h3>Select a paid plan below</h3>
           </div>
 
-            {Options.map(option => {
-              return (     
-          <div className='flex3' onClick={() => handleSelect(option.price)}>
-            <p className='flex3-name'>{option.label}</p>
-            <p>{option.description}</p>
-            <div>
-              <p>units: {option.number_of_units}</p>
-              <p>price: {option.price}</p>
-            </div>
-          </div>
-              )
-              })}
+          {plans.map(option => {
+            return (     
+              <div className='flex3' onClick={() => handleSelect(plans.price)}>
+                <p className='flex3-name'>{plans.name}</p>
+                <p>{plans.description}</p>
+                <div>
+                  <p>units: {plans.number_of_units}</p>
+                  <p>price: {plans.price}</p>
+                </div>
+              </div>
+            )
+          })}
 
          </div>
 

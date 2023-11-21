@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({setAccess_token, setUser_id}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword]  = useState('')
@@ -27,14 +27,12 @@ const Login = () => {
       })
       if (response.status === 200){
         console.log('login was successful')
-        // setAccessToken(response.data.access_token);
-        // setUser_Id(response.data.user.id)
+        setAccess_token(response.access_token);
+        // setUser_id(response.user.id);
         navigate('/dash')
       }
     } catch(error){
       setLoginError('Invalid username or password. Please try again.')
-      // setUsername('')
-      // setPassword('')
       console.error('Error received: ', error)
     }
   }
@@ -46,7 +44,6 @@ const Login = () => {
          <section className='section2'>
         <div className='formHolder'>
           <h1 className='welcome'>{welcome}</h1>
-            
 
           <form  className='formm' onSubmit={handleLogin}> 
             <svg className='svg1' xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 27 27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><br></br>
