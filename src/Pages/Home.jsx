@@ -16,8 +16,7 @@ const Home = () => {
 
   const location = useLocation();
   const value = location.state ? location.value.state : 110;
-  // const userDetails{
-  // }
+  
   const Options = [
     { label: '14 DAYS validity plan',
       description: 'This plan offers you a totsl of 14 units which would be for 28 days',
@@ -47,17 +46,27 @@ const Home = () => {
   ]
   
   let navigate = useNavigate();
-
   const gotoPayment = () => {
     let path = '/payment';
     navigate(path, {state:{price: selectedPrice}});
   }
 
   const [selectedPrice, setSelectedPrice] = useState(0)
-
   const handleSelect = (price) => {
     setSelectedPrice(price)
     gotoPayment()
+  }
+
+  const [plans, setPlans] = useState([])
+  const get_electricity_plans = async() => {
+    try{
+      // const headers={
+      //   'Authorization': `Bearer ${}`,
+      // }
+      // const response = await fetch('http://127.0.0.1:8000/api/electricity_plans/view')
+    } catch(error){
+
+    }
   }
 
   return (
@@ -77,21 +86,6 @@ const Home = () => {
         <div className='flexContainer'>
           <div className='flex0'>
           <h3>Select a paid plan below</h3>
-          {/* <CircularProgressbar 
-          className='progressbar'
-          value={value}
-          maxValue={200}
-          text={`${value/2}%`}
-          styles={buildStyles({
-            pathColor: `rgba(62, 152, 199, ${value / 100})`,
-            textColor: 'white',
-            trailColor: '#d6d6d6',
-            strokeLinecap: 'round',
-            pathTransitionDuration: '0.5'
-          })}
-        />
-
-        <h3>You have {value/2} Credits left</h3> */}
           </div>
 
             {Options.map(option => {
