@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { storeAccessToken } from './Cookie'
 
 const Login = ({setAccess_token, setUser_id}) => {
   const navigate = useNavigate();
@@ -28,8 +29,12 @@ const Login = ({setAccess_token, setUser_id}) => {
       if (response.status === 200){
         console.log('login was successful')
         setAccess_token(response.access_token);
+        storeAccessToken(response.access_token)
         // setUser_id(response.user.id);
         navigate('/dash')
+      }
+      else{
+        setLoginError('Invalid username or password. Please try again.')
       }
     } catch(error){
       setLoginError('Invalid username or password. Please try again.')

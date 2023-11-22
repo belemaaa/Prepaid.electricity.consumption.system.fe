@@ -27,13 +27,12 @@ const Home = ({access_token}) => {
     setSelectedPrice(price)
     gotoPayment()
   }
-  // fetch electricity_plan api
+  // fetch electricity plans
   const [plans, setPlans] = useState([])
   access_token = getAccessToken();
   useEffect(() => {
     const get_electricity_plans = async() => {
-      try{
-        
+      try{ 
         const headers={
           'Authorization': `Bearer ${access_token}`,
         }
