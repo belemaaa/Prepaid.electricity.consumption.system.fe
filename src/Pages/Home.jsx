@@ -14,7 +14,7 @@ import { getAccessToken } from './Cookie'
 import axios from 'axios'
 
 
-const Home = ({access_token}) => {
+const Home = () => {
   const location = useLocation();
   const value = location.state ? location.value.state : 110;
   let navigate = useNavigate();
@@ -29,19 +29,18 @@ const Home = ({access_token}) => {
   }
   // fetch electricity plans
   const [plans, setPlans] = useState([])
-  access_token = getAccessToken();
+  const access_token = getAccessToken();
   useEffect(() => {
     const get_electricity_plans = async() => {
       try{ 
-        const headers={
-          'Authorization': `Bearer ${access_token}`,
-        }
         const response = await axios.get('http://127.0.0.1:8000/api/electricity_plans/view')
-        setPlans(response.data.reverse())
+        console.log('Response data:', response.data);
+        setPlans(response.data)
       } catch(error){
           console.error('Error fetching plans: ', error)
       }
     }
+    get_electricity_plans()
   }, [])
   // fetch profile api
   const [profile, setProfile] = useState([])
@@ -57,7 +56,8 @@ const Home = ({access_token}) => {
         console.error('Error fetching profile data: ', error)
       }
     }
-  })
+    get_profile()
+  }, [])
   return (
 
     <div className='UserPage'>
@@ -78,19 +78,17 @@ const Home = ({access_token}) => {
           <div className='flex0'>
           <h3>Select a paid plan below</h3>
           </div>
-
-          {plans.map(option => {
-            return (     
-              <div className='flex3' onClick={() => handleSelect(plans.price)}>
-                <p className='flex3-name'>{plans.name}</p>
-                <p>{plans.description}</p>
-                <div>
-                  <p>units: {plans.number_of_units}</p>
-                  <p>price: {plans.price}</p>
-                </div>
+          {plans.map((plan, index) => (  
+            <div key={index} className='flex3' onClick={() => handleSelect(plan.price)}>
+              <p className='flex3-name'>{plan.name}</p>
+              <p>{plan.description}</p>
+              <div>
+                <p>units: {plan.number_of_units}</p>
+                <p>price: {plan.price}</p>
+                <p>hey</p>
               </div>
-            )
-          })}
+            </div>    
+          ))}
          </div>
         </div>
       </div>

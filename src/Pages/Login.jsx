@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { storeAccessToken } from './Cookie'
 
-const Login = ({setAccess_token, setUser_id}) => {
+const Login = ({setUser_id}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword]  = useState('')
@@ -26,12 +26,15 @@ const Login = ({setAccess_token, setUser_id}) => {
           password: password
         })
       })
-      if (response.status === 200){
-        console.log('login was successful')
-        setAccess_token(response.access_token);
-        storeAccessToken(response.access_token)
-        // setUser_id(response.user.id);
-        navigate('/dash')
+      const responseData = await response.json();
+      if (response.status === 200) {
+        console.log('login was successful');
+        storeAccessToken(responseData.access_token);
+        navigate('/dash');
+        // console.log(responseData.access_token);
+        // console.log(response.status);
+        // console.log(responseData.message);
+        // console.log(responseData.user.first_name);
       }
       else{
         setLoginError('Invalid username or password. Please try again.')
@@ -54,11 +57,11 @@ const Login = ({setAccess_token, setUser_id}) => {
             <svg className='svg1' xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 27 27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><br></br>
             {loginError && <p style={{color: 'red'}}>{loginError}</p>}
             <label>Email</label><br></br>
-            <input placeholder='Input your Email' type='email' name='email' onChange={e => setEmail(e.target.value)} >
+            <input placeholder='Input your Email' type='email' value={email} onChange={(e) => setEmail(e.target.value)} >
             </input>
             <p className='warning'>{}</p>
             <label>Password</label><br></br>
-            <input placeholder= ' Input your password' type='password' name='password' onChange={e => setPassword(e.target.value)} >
+            <input placeholder= ' Input your password' type='password' value={password} onChange={(e) => setPassword(e.target.value)} >
             </input>
             <p className='warning'>{}</p>
             <button type='submit'><p>Login</p></button>
