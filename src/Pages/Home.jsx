@@ -92,9 +92,7 @@ const Home = ({access_token}) => {
               </div>
             )
           })}
-
          </div>
-
         </div>
       </div>
       )
