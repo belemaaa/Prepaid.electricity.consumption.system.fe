@@ -37,10 +37,10 @@ const Login = ({setUser_id}) => {
         // console.log(responseData.user.first_name);
       }
       else{
-        setLoginError('Invalid username or password. Please try again.')
+        setLoginError('Invalid email or password. Please try again.')
       }
     } catch(error){
-      setLoginError('Invalid username or password. Please try again.')
+      setLoginError('Invalid email or password. Please try again.')
       console.error('Error received: ', error)
     }
   }

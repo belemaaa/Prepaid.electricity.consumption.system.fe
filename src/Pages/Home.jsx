@@ -27,14 +27,14 @@ const Home = () => {
     setSelectedPrice(price)
     gotoPayment()
   }
-  // fetch electricity plans
   const [plans, setPlans] = useState([])
   const access_token = getAccessToken();
+
+  // fetch electricity plans
   useEffect(() => {
     const get_electricity_plans = async() => {
       try{ 
         const response = await axios.get('http://127.0.0.1:8000/api/electricity_plans/view')
-        console.log('Response data:', response.data);
         setPlans(response.data)
       } catch(error){
           console.error('Error fetching plans: ', error)
@@ -42,22 +42,23 @@ const Home = () => {
     }
     get_electricity_plans()
   }, [])
+
   // fetch profile api
   const [profile, setProfile] = useState([])
   useEffect(() => {
     const get_profile = async() => {
       try{
         const headers={
-          'Authorization': `Bearer ${access_token}`,
+          Authorization: `Bearer ${access_token}`,
         }
-        const response = await axios.get('http://127.0.0.1:8000/api/profile/')
-        setProfile(response.data)
+        const response = await axios.get('http://127.0.0.1:8000/api/profile/', {headers: headers})
+        setProfile(response.data.user)
       } catch(error){
         console.error('Error fetching profile data: ', error)
       }
     }
     get_profile()
-  }, [])
+  }, [access_token])
   return (
 
     <div className='UserPage'>
@@ -85,7 +86,7 @@ const Home = () => {
               <div>
                 <p>units: {plan.number_of_units}</p>
                 <p>price: {plan.price}</p>
-                <p>hey</p>
+                <p>{access_token}</p>
               </div>
             </div>    
           ))}
