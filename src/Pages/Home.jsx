@@ -12,6 +12,8 @@ import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import { useLocation } from 'react-router-dom'
 import { getAccessToken } from './Cookie'
 import axios from 'axios'
+import {CgProfile} from 'react-icons/cg'
+import { FaUser } from "react-icons/fa";
 
 
 const Home = () => {
@@ -67,11 +69,10 @@ const Home = () => {
         <Header />
         <h2>DASHBOARD</h2>
         <div className='sidebar'>
-          <h1></h1>
-          <p>{profile.first_name}</p>
-          <p>{profile.last_name}</p>
-          <p>@{profile.username}</p>
-          <p>{profile.email}</p>
+          <FaUser size={50} className='profile-icon'/>
+          <p className='name'>{profile.first_name} {profile.last_name}</p>
+          <p className='username'>@{profile.username}</p>
+          <p className='email'>{profile.email}</p>
           <p>{profile.phone_number}</p>
         </div>
 
@@ -86,7 +87,6 @@ const Home = () => {
               <div>
                 <p>units: {plan.number_of_units}</p>
                 <p>price: {plan.price}</p>
-                <p>{access_token}</p>
               </div>
             </div>    
           ))}
