@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getAccessToken } from '../Pages/Cookie';
 
 
-const Payment = ({plan_id}) => {
+const Payment = ({plan_id, price}) => {
     const navigate = useNavigate();
     const [card_holder_name, setCard_holder_name] = useState('')
     const [card_number, setCard_number] = useState('')
@@ -18,7 +18,6 @@ const Payment = ({plan_id}) => {
     const [success_message, setSuccess_message] = useState('')
     const [show_pin, setShow_pin] = useState(false)
     const [pin, setPin] = useState(null)
-    const [price, setPrice] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,7 +44,6 @@ const Payment = ({plan_id}) => {
                 setSuccess_message('Payment successful')
                 setShow_pin(true)
                 setPin(response.data.electricity_pin)
-                setPrice(response.data.price)
             }
         }catch(error){
             console.error('Error processing payment: ', error)
@@ -135,10 +133,7 @@ const Payment = ({plan_id}) => {
                 <br></br>
                 <label>Payment Amount</label>
                 <br></br>
-                <input
-                    value={price}
-                    readOnly
-                />
+                <p>{price}</p>
                 <br></br>
                 <br></br>
                 <button type="submit">Pay</button>

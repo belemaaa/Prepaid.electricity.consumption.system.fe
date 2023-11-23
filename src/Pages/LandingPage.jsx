@@ -12,11 +12,14 @@ const LandingPage = () => {
         <h1>AmpSmart Solutions</h1>
       </div>
       <div className='holster'>
-        <h1>Manage your electricity the smart way...</h1>
+        <div className='holster1'>
+          <h1>Manage your electricity the smart way...</h1>
+          <div className='buttonHolder'>
+            <Link to='/Create'> <button> Get Started </button></Link>
+          </div>
+        </div>
+        
         <img src={background_image}/>
-      </div>
-      <div className='buttonHolder'>
-        <Link to='/Create'> <button> Get Started </button></Link>
       </div>
     </div>
   )
