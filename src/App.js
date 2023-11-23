@@ -14,13 +14,14 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 function App() {
   const [access_token, setAccess_token] = useState('')
   const [user_id, setUser_id] = useState(null)
+  const [plan_id, setPlan_id] = useState(null)
   return (
     <div className='holder'>
     <Router>   
       <Routes>
         <Route path='/' element= {<LandingPage/>}></Route>
-          <Route path='/dash' element={<Home access_token={access_token} user_id={user_id} />}></Route> 
-          <Route path='/payment' element={<Payment />}></Route>
+          <Route path='/dash' element={<Home access_token={access_token} user_id={user_id} setPlan_id={setPlan_id}/>}></Route> 
+          <Route path='/payment' element={<Payment plan_id={plan_id} />}></Route>
           <Route path='Header' element={<Header />}> </Route>
           <Route path='/admin' element={<Admin />}></Route>
           <Route path='/Login' element={<Login setAccess_token={setAccess_token} setUser_id={setUser_id}/>}></Route>

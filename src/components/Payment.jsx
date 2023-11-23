@@ -2,55 +2,31 @@ import React from 'react'
 import { useState } from 'react';
 import './Payment.css'
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getAccessToken } from '../Pages/Cookie';
 
 
-const Payment = () => {
-
+const Payment = ({plan_id}) => {
     const navigate = useNavigate();
-    const [values, setValues] = useState({
-        cardHolderName: '',
-        cardNumber: '',
-        expiryDate: '',
-        cvv: '',
-        paymentAmount: ''
-    });
-    const [errors, setErrors] = useState({})
+    const [card_holder_name, setCard_holder_name] = useState('')
+    const [card_number, setCard_number] = useState('')
+    const [card_expiry_date] = useState('')
+    const [cvv, setCvv] = useState('')
+    const [address, setAddress] = useState('')
+    const [phone_number, setPhone_number] = useState('')
+    const [meter_id, setMeter_id] = useState('')
+    const access_token = getAccessToken()
 
-    const handleChange = (event) => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value
-        });
-    };
-
-    
-
-    const validateForm = () => {
-        let tempErrors = {};
-        // Add your validation logic here
-        // For example:
-        tempErrors.cardNumber = values.cardNumber ? "" : "Input the right figures"
-        tempErrors.cardHolderName = values.cardHolderName ? "" : "This field is required.";
-        tempErrors.expiryDate = values.expiryDate ? "" : "This field is required.";
-        tempErrors.cvv = values.cvv ? "" : "Input the correct cvv"
-        // tempErrors.paymentAmount = values.paymentAmount ? "" : "Enter a valid payment amount"
-        // Repeat for other fields
-        setErrors(tempErrors);
-        return Object.values(tempErrors).every(x => x === "");
-      };
-    
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (validateForm()) {
-            navigate('/pin')
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+            const headers={
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${access_token}`
+            }
+        }catch(error){
+            pass
         }
-
     };
-
-    const location = useLocation();
-    const paymentPrice = location.state.price;
-
 
     return (
         <div className='paydiv'>

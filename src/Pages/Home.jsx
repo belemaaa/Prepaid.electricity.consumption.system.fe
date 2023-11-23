@@ -16,28 +16,32 @@ import {CgProfile} from 'react-icons/cg'
 import { FaUser } from "react-icons/fa";
 
 
-const Home = () => {
+const Home = ({setPlan_id}) => {
   const location = useLocation();
   const value = location.state ? location.value.state : 110;
+
   let navigate = useNavigate();
   const gotoPayment = () => {
     let path = '/payment';
     navigate(path, {state:{price: selectedPrice}});
   }
+
   const [selectedPrice, setSelectedPrice] = useState(0)
   const handleSelect = (price) => {
-    setSelectedPrice(price)
+    // setSelectedPrice(price)
     gotoPayment()
   }
+
+
   const [plans, setPlans] = useState([])
   const access_token = getAccessToken();
-
   // fetch electricity plans
   useEffect(() => {
     const get_electricity_plans = async() => {
       try{ 
         const response = await axios.get('http://127.0.0.1:8000/api/electricity_plans/view')
         setPlans(response.data)
+        setPlan_id(response.data.id)
       } catch(error){
           console.error('Error fetching plans: ', error)
       }
