@@ -9,12 +9,16 @@ const Payment = ({plan_id}) => {
     const navigate = useNavigate();
     const [card_holder_name, setCard_holder_name] = useState('')
     const [card_number, setCard_number] = useState('')
-    const [card_expiry_date] = useState('')
+    const [card_expiry_date, setCard_expiry_date] = useState('')
     const [cvv, setCvv] = useState('')
     const [address, setAddress] = useState('')
     const [phone_number, setPhone_number] = useState('')
     const [meter_id, setMeter_id] = useState('')
     const access_token = getAccessToken()
+    const [success_message, setSuccess_message] = useState('')
+    const [show_pin, setShow_pin] = useState(false)
+    const [pin, setPin] = useState(null)
+    const [price, setPrice] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,14 +27,34 @@ const Payment = ({plan_id}) => {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${access_token}`
             }
+            const response = await fetch(`http://127.0.0.1:8000/api/payment/${plan_id}`,{
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    card_holder_name: card_holder_name,
+                    card_number: card_number,
+                    card_expiry_date: card_expiry_date,
+                    cvv: cvv,
+                    address: address,
+                    phone_number: phone_number,
+                    meter_id: meter_id
+                })
+            })
+            if (response.status === 200){
+                console.log('Payment successful')
+                setSuccess_message('Payment successful')
+                setShow_pin(true)
+                setPin(response.data.electricity_pin)
+                setPrice(response.data.price)
+            }
         }catch(error){
-            pass
+            console.error('Error processing payment: ', error)
         }
     };
-
     return (
         <div className='paydiv'>
             <section className='paydivsec'>
+                {success_message && <p style={{color: 'green'}}>{success_message}</p>}
             <form onSubmit={handleSubmit} className='payform'>
 
                 <h1>Payment Details</h1>
@@ -38,14 +62,12 @@ const Payment = ({plan_id}) => {
                 <br></br>
                 <input
                     type="text"
-                    name="cardHolderName"
-                    value={values.cardHolderName}
-                    onChange={handleChange}
+                    value={card_holder_name}
+                    onChange={(e) => setCard_holder_name(e.target.value)}
                     placeholder="eg: Adetunji Tofunmi"
                 />
                 
                 <br></br>
-                {errors.cardHolderName && <div>{errors.cardHolderName}</div>}
                 <br></br>
 
                 <label>Card Number</label>
@@ -53,53 +75,71 @@ const Payment = ({plan_id}) => {
 
                 <input
                     type="number"
-                    name="cardNumber"
-                    value={values.cardNumber}
-                    onChange={handleChange}
+                    value={card_number}
+                    onChange={(e) => setCard_number(e.target.value)}
                     placeholder="eg: 1234 4567 7890 0123"
                 />
-                <br></br>{errors.cardNumber && <div>{errors.cardNumber}</div>}
+                <br></br>
                 <br></br>
 
                 <label>Expiry date</label>
                 <br></br>
                 <input
-                    type="date"
-                    name="expiryDate"
-                    value={values.expiryDate}
-                    onChange={handleChange}
-                    placeholder="Expiry Date"
+                    type="text"
+                    value={card_expiry_date}
+                    onChange={(e) => setCard_expiry_date(e.target.value)}
+                    placeholder="e.g 10/24"
                 />
                 <br></br>
-                {errors.expiryDate && <div>{errors.expiryDate}</div>}
                 <br></br>
 
                 <label>CVV</label>
                 <br></br>
-
                 <input
                     type="number"
-                    name="cvv"
-                    value={values.cvv}
-                    onChange={handleChange}
+                    value={cvv}
+                    onChange={(e) => setCvv(e.target.value)}
                     placeholder="eg: 000"
                 />
                 <br></br>
-                {errors.cvv && <div>{errors.cvv}</div>}
                 <br></br>
-
-                <label>Payment Amount</label>
+                <label>Phone number</label>
+                <br></br>
+                <input
+                    type="tel"
+                    value={phone_number}
+                    onChange={(e) => setPhone_number(e.target.value)}
+                    placeholder="+234"
+                />
+                <br></br>
+                <br></br>
+                <label>Address</label>
                 <br></br>
                 <input
                     type="text"
-                    name="paymentAmount"
-                    value={paymentPrice}
-                    readOnly
-                    // onChange={handleChange}
-                    placeholder="Payment Amount"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="24 Texas Street"
                 />
                 <br></br>
-                {errors.paymentAmount && <div>{errors.paymentAmount}</div>}
+                <br></br>
+                <label>Meter id</label>
+                <br></br>
+                <input
+                    type="text"
+                    value={meter_id}
+                    onChange={(e) => setMeter_id(e.target.value)}
+                    placeholder="eg: 12345"
+                />
+                <br></br>
+                <br></br>
+                <label>Payment Amount</label>
+                <br></br>
+                <input
+                    value={price}
+                    readOnly
+                />
+                <br></br>
                 <br></br>
                 <button type="submit">Pay</button>
             </form>

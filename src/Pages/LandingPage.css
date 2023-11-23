@@ -1,56 +1,55 @@
 body {
     width: 100%;
     height: auto;
-    background-color: beige;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #FFFDD0;
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
 }
-
-
-.LandingPage {
-    margin: auto;
-    /* text-align: center; */
-}
-
 .landinginfo {
-    width: 97vw;
     height: 11vh;
     padding-left: 3vw;
-    color: white;
-    background-color: beige;
-    border-color: teal;
-    border-bottom: 3px solid;
     color: teal;
-
-
-
-}
-
-.holster {
-    width: 100vw;
-    height: 85vh;
-    /* margin: auto; */
-    object-fit: fill;
-    background-image: url('../images/energy-saving-concept-illustration_114360-14216.webp');
-    background-repeat: no-repeat;
-    text-align: center;
-    float: left;
-}
-
-.holster h1{
-    width: 30vw;
-    font-size: 10.6vh;
-    margin-right: 6vw;
-    text-align: left;
+    font-size: larger;
+    border-bottom: 1px solid;
+    border-color: rgb(200, 200, 200);
+    margin-left: 40px;
+    margin-right: 40px;
     
 }
-
+.holster{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    justify-items: auto;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    margin-bottom: -10px;
+}
+.holster img{
+    background-repeat: no-repeat;
+    height: 80vh;
+    float: right;
+    background-color: #FFFDD0;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.holster h1{
+    z-index: 10;  
+    float: left;
+    max-width: 550px;
+    font-size: 80px;
+    color: black;
+    font-weight: 600;
+}
 .buttonHolder {
     width: 20vw;
     height: auto;
-    /* background-color: white; */
-    /* margin: auto; */
+    margin: auto;
     display: flex;
-    margin-left: 10vw;
+    margin-top: -8vh;
 }
 
 .buttonHolder button {
@@ -60,46 +59,12 @@ body {
     border-radius: 10vw;
     border: none;
     font-size: 3vh;
-    margin: auto;
     color: white;
-    margin-top: 78vh;
-}
+    margin-left: -30vw;
+    /* margin-top: -6vh; */
+    /* margin-bottom: 8vh; */
+} 
 
-.moreInfo {
-    width: 50vw;
-    height: auto;
-    /* background-color: red; */
-    /* margin: auto; */
-    /* background-image: url('../images/t4.jpg'); */
-    object-fit: contain;
-    box-sizing: border-box;
-    float: right;
-    margin-left: 10vw;
-    padding-left: 5vw;
-}
-
-/* .persons{
-    width: 90vw;
-    height: auto;
+.LandingPage{
     padding-bottom: 5vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
 }
-
-.personholder {
-    width: 15vw;
-    height: 30vh;
-    padding: 3vh;
-    border-radius: 1vw;
-    background-color: teal;
-    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
-    transition: .3s ease-out;
-    color: white;
-
-}
-
-.personholder:hover{
-    width: 18vw;
-    height: 32vh;
-    transition: .3s ease-out;
-} */
