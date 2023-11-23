@@ -5,9 +5,43 @@
     padding-bottom: 5vh;
 }
 
+.paidplans h2 {
+    padding-top: 10vh;
+}
+
 .historybar{
-    width: 40vw;
+    width: 80vw;
     height: 80vh;
     background-color: teal;
     margin: auto;
+    border-radius: 10px;
+}
+
+.flexContainer2{
+    display: grid;
+    grid-template-columns: repeat(1, 0.2fr);
+    margin: auto;
+}
+
+.flexContainer2 div{
+    box-sizing: border-box;
+    width: 100vw;
+}
+
+.flex2 {
+    border-bottom: 1px solid;
+    border-color: white;
+    color: white;
+    margin: auto;
+    /* border-color: black; */
+}
+.flex2-name{
+    color: white;
+    font-weight: 700;
+}
+.flex2 div{
+    justify-content: space-between;
+    font-weight: 600;
+    flex: 1;
+    flex-direction: row;
 }

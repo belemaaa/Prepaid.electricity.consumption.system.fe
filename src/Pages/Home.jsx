@@ -79,7 +79,7 @@ const Home = ({setPlan_id, setPrice}) => {
 
         <div className='flexContainer'>
           <div className='flex0'>
-          <h3>Select a paid plan below</h3>
+          <h3>Select a payment plan below</h3>
           </div>
           {plans.map((plan, index) => (  
             <div key={index} className='flex3' onClick={() => handleSelect(plan.id, plan.price)}>

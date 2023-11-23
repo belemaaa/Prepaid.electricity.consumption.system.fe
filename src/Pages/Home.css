@@ -58,12 +58,6 @@
     margin-bottom: 6px;
 }
 
-
-/* .dashboard p{
-    font-size: 5vh;
-    font-weight: bold;
-} */
-
 .flexContainer{
     display: grid;
     grid-template-columns: repeat(1, 0.2fr);

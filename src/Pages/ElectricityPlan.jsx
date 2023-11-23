@@ -18,7 +18,7 @@ const ElectricityPlan = () => {
         const headers={
           Authorization: `Bearer ${access_token}`
         }
-        const response = await axios.get('http://127.0.0.1:8000/api/electricity_plans/view', {headers: headers})
+        const response = await axios.get('http://127.0.0.1:8000/api/paid_plans/', {headers: headers})
         setPlans(response.data)
       } catch(error){
           console.error('Error fetching plans: ', error)
@@ -30,21 +30,19 @@ const ElectricityPlan = () => {
   return (
 
     <div className='ElectricityPlan'>
-
       <Header />
-      
       <div className='paidplans'>
         <h2>Your payment history</h2>
       </div>
       <div className='historybar'>
-        <div className='flexContainer'>
+        <div className='flexContainer2'>
           {plans.map((plan, index) => (  
-            <div key={index} className='flex3'>
-              <p className='flex3-name'>{plan.name}</p>
-              <p>{plan.description}</p>
+            <div key={index} className='flex2'>
+              <p className='flex2-name'>{plan.electricity_plan.name}</p>
+              <p>{plan.electricity_plan.description}</p>
               <div>
-                <p>units: {plan.number_of_units}</p>
-                <p>price: {plan.price}</p>
+                <p>units: {plan.electricity_plan.number_of_units}</p>
+                <p>price: {plan.electricity_plan.price}</p>
               </div>
             </div>    
           ))}

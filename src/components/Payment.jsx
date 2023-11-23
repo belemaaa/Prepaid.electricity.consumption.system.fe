@@ -40,10 +40,17 @@ const Payment = ({plan_id, price}) => {
                 })
             })
             if (response.status === 200){
-                console.log('Payment successful')
+                console.log('Your payment has been successfully processed.')
                 setSuccess_message('Payment successful')
                 setShow_pin(true)
                 setPin(response.data.electricity_pin)
+                setCard_holder_name('')
+                setCard_number('')
+                setCard_expiry_date('')
+                setCvv('')
+                setPhone_number('')
+                setAddress('')
+                setMeter_id('')
             }
         }catch(error){
             console.error('Error processing payment: ', error)
@@ -52,10 +59,10 @@ const Payment = ({plan_id, price}) => {
     return (
         <div className='paydiv'>
             <section className='paydivsec'>
-                {success_message && <p style={{color: 'green'}}>{success_message}</p>}
             <form onSubmit={handleSubmit} className='payform'>
 
                 <h1>Payment Details</h1>
+                {success_message && <p className='success_message'>{success_message}</p>}
                 <label>Card Holder Name</label>
                 <br></br>
                 <input
