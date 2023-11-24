@@ -24,7 +24,7 @@ const Payment = ({plan_id, price}) => {
         try{
             const headers={
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${access_token}`
+                'Authorization': `Bearer ${access_token}`
             }
             const response = await fetch(`http://127.0.0.1:8000/api/payment/${plan_id}`,{
                 method: 'POST',
@@ -41,25 +41,23 @@ const Payment = ({plan_id, price}) => {
             })
             if (response.status === 200){
                 console.log('Your payment has been successfully processed.')
+                // console.log(response.data.data.electricity_pin)
                 setSuccess_message('Payment successful')
                 setShow_pin(true)
                 setPin(response.data.electricity_pin)
-                setCard_holder_name('')
-                setCard_number('')
-                setCard_expiry_date('')
-                setCvv('')
-                setPhone_number('')
-                setAddress('')
-                setMeter_id('')
+                console.log(response.data.electricity_pin)
+            }
+            else{
+                setSuccess_message('An error occurred.')
             }
         }catch(error){
             console.error('Error processing payment: ', error)
         }
     };
     return (
-        <div  className={`paydiv ${show_pin ? 'blur-background' : ''}`}>
+        <div  className='paydiv'>
             <section className='paydivsec'>
-            <form onSubmit={handleSubmit} className='payform'>
+            <form onSubmit={handleSubmit} className={`payform ${show_pin ? 'blur-background' : ''}`}>
 
                 <h1>Payment Details</h1>
                 {success_message && <p className='success_message'>{success_message}</p>}

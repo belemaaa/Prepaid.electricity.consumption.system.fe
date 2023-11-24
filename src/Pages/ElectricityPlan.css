@@ -10,11 +10,13 @@
 }
 
 .historybar{
-    width: 80vw;
-    height: 80vh;
-    background-color: teal;
+    /* width: 80vw; */
+    height: auto;
+    /* background-color: teal; */
     margin: auto;
     border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .flexContainer2{
@@ -30,8 +32,8 @@
 
 .flex2 {
     border-bottom: 1px solid;
-    border-color: white;
-    color: white;
+    border-color: teal;
+    color: black;
     margin: auto;
     /* border-color: black; */
 }
