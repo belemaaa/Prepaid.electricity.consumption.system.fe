@@ -14,6 +14,7 @@ import { getAccessToken } from './Cookie'
 import axios from 'axios'
 import {CgProfile} from 'react-icons/cg'
 import { FaUser } from "react-icons/fa";
+import ConsumptionReader from './ConsumptionReader'
 
 
 const Home = ({setPlan_id, setPrice}) => {
@@ -75,6 +76,9 @@ const Home = ({setPlan_id, setPrice}) => {
           <p className='username'>@{profile.username}</p>
           <p className='email'>{profile.email}</p>
           <p>{profile.phone_number}</p>
+          <div>
+            <ConsumptionReader/>
+          </div>
         </div>
 
         <div className='flexContainer'>

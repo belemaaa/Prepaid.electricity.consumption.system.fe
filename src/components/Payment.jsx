@@ -57,7 +57,7 @@ const Payment = ({plan_id, price}) => {
         }
     };
     return (
-        <div className='paydiv'>
+        <div  className={`paydiv ${show_pin ? 'blur-background' : ''}`}>
             <section className='paydivsec'>
             <form onSubmit={handleSubmit} className='payform'>
 
@@ -145,6 +145,14 @@ const Payment = ({plan_id, price}) => {
                 <br></br>
                 <button type="submit">Pay</button>
             </form>
+
+            {show_pin && (
+                <div className='pin-popup'>
+                    <h2>Your Electricity Pin</h2>
+                    <p>{pin}</p>
+                    <button onClick={() => setShow_pin(false)}>Close</button>
+                </div>
+            )}
             </section>
         </div>
 
