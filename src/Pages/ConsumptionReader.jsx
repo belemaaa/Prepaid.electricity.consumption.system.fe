@@ -3,15 +3,22 @@ import axios from 'axios';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './ConsumptionReader.css'
+import { getAccessToken } from './Cookie';
 
 const ConsumptionReader = () => {
   const [percentageConsumed, setPercentageConsumed] = useState(0);
+  const access_token = getAccessToken()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/consumption_reader/');
-        const data = response.data.data;
+        const headers = {
+            Authorization: `Bearer ${access_token}`
+        }
+        const response = await axios.get('http://127.0.0.1:8000/api/consumption_reader/', {
+            headers: headers
+        });
+        const data = response.data
         setPercentageConsumed(data.percentage_consumed);
       } catch (error) {
         console.error('Error fetching consumption data: ', error);
@@ -32,9 +39,9 @@ const ConsumptionReader = () => {
           strokeLinecap: 'butt',
           textSize: '10px',
           pathTransitionDuration: 0.5,
-          pathColor: `rgba(62, 152, 199, ${percentageConsumed / 100})`,
-          textColor: 'grey',
-          trailColor: '#d6d6d6',
+          pathColor: 'white',
+          textColor: 'white',
+          trailColor: 'grey',
           backgroundColor: '#3e98c7',
         })}
       />
