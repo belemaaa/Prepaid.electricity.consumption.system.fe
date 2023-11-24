@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import './ConsumptionReader.css'
 
 const ConsumptionReader = () => {
   const [percentageConsumed, setPercentageConsumed] = useState(0);
@@ -29,10 +30,10 @@ const ConsumptionReader = () => {
         styles={buildStyles({
           rotation: 0.25,
           strokeLinecap: 'butt',
-          textSize: '16px',
+          textSize: '10px',
           pathTransitionDuration: 0.5,
           pathColor: `rgba(62, 152, 199, ${percentageConsumed / 100})`,
-          textColor: '#f88',
+          textColor: 'grey',
           trailColor: '#d6d6d6',
           backgroundColor: '#3e98c7',
         })}

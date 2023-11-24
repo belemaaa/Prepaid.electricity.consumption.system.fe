@@ -1,0 +1,15 @@
+.consumption-reader {
+    width: 350px;
+    height: 350px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.consumption-reader h2{
+    color: white;
+    font-size: 28px;
+    text-align: center;
+}
