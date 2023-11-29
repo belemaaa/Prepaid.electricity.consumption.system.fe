@@ -7,7 +7,7 @@
 
 .section1{
     width: 100vw;
-    height: 100vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +23,7 @@
 .form2{
     width: 40vw;
     padding-bottom: 8vh;
-    height: 70vh;
+    height: auto;
     margin: auto;
     text-align: center;
     align-content: center;

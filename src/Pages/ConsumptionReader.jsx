@@ -32,14 +32,14 @@ const ConsumptionReader = () => {
     <div className="consumption-reader">
       <h2>Consumption Reader</h2>
       <CircularProgressbar
-        value={percentageConsumed}
-        text={`${percentageConsumed}%`}
+        value={percentageConsumed/2}
+        text={`${percentageConsumed/2}%`}
         styles={buildStyles({
-          rotation: 0.25,
-          strokeLinecap: 'butt',
+          rotation: 0.5,
+          strokeLinecap: 'round',
           textSize: '10px',
-          pathTransitionDuration: 0.5,
-          pathColor: 'white',
+          pathTransitionDuration: 1.5,
+          pathColor: 'lightblue',
           textColor: 'white',
           trailColor: 'grey',
           backgroundColor: '#3e98c7',

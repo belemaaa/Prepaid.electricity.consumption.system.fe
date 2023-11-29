@@ -75,7 +75,7 @@ const Home = ({setPlan_id, setPrice}) => {
           <p className='name'>{profile.first_name} {profile.last_name}</p>
           <p className='username'>@{profile.username}</p>
           <p className='email'>{profile.email}</p>
-          <p>{profile.phone_number}</p>
+          <p className='phone'>{profile.phone_number}</p>
           <div>
             <ConsumptionReader/>
           </div>

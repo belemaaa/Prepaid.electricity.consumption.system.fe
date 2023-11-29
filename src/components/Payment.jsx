@@ -20,6 +20,9 @@ const Payment = ({plan_id, price}) => {
     const [pin, setPin] = useState(null)
 
     const handleSubmit = async (e) => {
+
+        const Pinn = Math.floor(Math.random() * 1000000)
+
         e.preventDefault();
         try{
             const headers={
@@ -44,8 +47,10 @@ const Payment = ({plan_id, price}) => {
                 // console.log(response.data.data.electricity_pin)
                 setSuccess_message('Payment successful')
                 setShow_pin(true)
-                setPin(response.data.electricity_pin)
+                setPin(Pinn)
                 console.log(response.data.electricity_pin)
+                console.log(response.data)
+                console.log(Pinn)
             }
             else{
                 setSuccess_message('An error occurred.')
@@ -53,6 +58,8 @@ const Payment = ({plan_id, price}) => {
         }catch(error){
             console.error('Error processing payment: ', error)
         }
+
+        
     };
     return (
         <div  className='paydiv'>
